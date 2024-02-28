@@ -1,0 +1,66 @@
+<head>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.16/jquery-ui.min.js"></script>
+</head>
+
+<div class="page page00025">
+    <section>
+        <h1>2024학년도 <br>정명고등학교 <span>반배정결과 조회</span></h1>
+        <div class="box">
+            <input type="text" id="knum" name="knum" placeholder="생년월일(000000)">
+            <input type="text" id="kname" name="kname" placeholder="이름">
+
+		<button type="button" id="btn_search" class="btn btn-primary">검 색 <i class="fas fa-search" aria-hidden="true"></i></button>
+        </div>
+    </section>
+</div>
+
+<div class="page page00026">
+    <section>
+         <h2 id="rst">○○○학생은 <span>1학년 ○반</span>에 배정되었습니다.</h2>
+    </section>
+</div>
+
+<script>
+    $("#btn_search").on("click", function() {
+        var knum	= $("#knum").val();
+        var kname	= $("#kname").val();
+        
+        if(knum == "") {
+            alert("생년월일을 입력하세요!");
+            $("#knum").focus();
+            return false;
+        }
+        if(kname == "") {
+            alert("이름을 입력하세요!");
+            $("#kname").focus();
+            return false;
+        }
+    
+        var proc = "searchMember";
+    
+        $.ajax({
+            url: '/layouts/jeongmyung/process/main_proc.php',
+            type: 'POST',
+            dataType: 'text',
+            data: { knum: knum, kname: kname, proc: proc },
+            async: false,
+            success: function(data, textStatus, jqXHR){
+                var data_arr = data.split("^^");
+                if(data_arr[0].trim()=="ok") {
+                    $("#rst").html(data_arr[1]);
+                } else if(data_arr[0].trim()=="err") {
+                    alert("검색되지 않습니다. 이름과 생년월일을 확인하시기 바랍니다.");
+                    $("#knum").focus();
+                } else {
+                    alert("시스템에 문제가 있습니다.[ "+data+" ]\n관리자에게 문의해 주세요.");
+                    $("#knum").val("");
+                    $("#kname").val("");
+                }
+            },
+            error: function(){
+                return;
+            }
+        });
+    });
+    </script>
