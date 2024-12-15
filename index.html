@@ -1,125 +1,45 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="ko" xml:lang="ko" xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>정명고등학교 - 반배정결과조회</title>
-    <meta name="robots" content="ALL">
-    <meta name="generator" content="kimsQ-RB 1.2.2">
-    <meta name="author" content="www.jeongmyung.hs.kr">
-    <!-- Add other meta tags as needed -->
-
-    <!-- External JavaScript files -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="./정명고등학교 - 반배정결과조회_files/jquery-ui.min.js.다운로드"></script>
-    <script src="./정명고등학교 - 반배정결과조회_files/sys.js.다운로드"></script>
-    <script src="./정명고등학교 - 반배정결과조회_files/_main.js.다운로드"></script>
-    <script src="./정명고등학교 - 반배정결과조회_files/_main(1).js.다운로드"></script>
-    <!-- Add other script tags as needed -->
-
-    <!-- Add stylesheets or other head elements as needed -->
-</head>
-
-<body>
-    <!-- Your HTML body content goes here -->
-
-    <div class="right_side">
-        <div class="path_line">
-            <p><a href="https://www.jeongmyung.hs.kr/">HOME</a> &gt; <a href="https://www.jeongmyung.hs.kr/?c=B01">학교소식</a> &gt; <a
-                    href="https://www.jeongmyung.hs.kr/?c=B01/B18">반배정결과조회</a></p>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+    <head>
+        <title>정명고 반배정 미리보기</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="search.js" defer></script>
+    </head>
+    <body>
+        <div class="title">
+            <span>정명고등학교 반배정 미리보기</span> 
         </div>
-        <!-- //path -->
-        <h3 class="sub_title">반배정결과조회</h3>
+        <div>
+            <h1 class="mainText">아래 사항을 모두 읽고 반배정을 확인해주세요.</h1>
+            <h2 class="subText">#1 PC 환경에서 사용해 주세요</h2>
+            <p class="explText">이 웹사이트는 PC 환경에서 제작되어 모바일에서 테스트되지 않았습니다.</p>
+            <p class="explText">대부분의 환경에서 정상 작동하나 오류가 지속적으로 발생한다면 PC 크롬으로 실행해 주세요.</p>
+            
+            <h2 class="subText">#2 비밀을 지켜주세요</h2>
+            <p class="explText">웹사이트 URL이 공개되면 반배정 시스템이 교체되거나 폐지될 가능성이 있습니다.</p>
+            <p class="explText">기타 등등의 이유로 이 웹사이트는 비밀로 부쳐주시기 바랍니다.</p>
 
-        <div class="content">
-            <!-- Your content goes here -->
+            <h2 class="subText">#3 확인 원리가 어떻게 되나요?</h2>
+            <p class="explText">2024학년도 반배정에서 저는 정명고등학교 웹사이트에 서버 요청 자바스크립트가 평서문 그대로 적혀있는 것을 보고</p>
+            <p class="explText">코드를 약간 수정한 뒤 서버에 요청을 해보니 정명고등학교 서버엔 이미 반배정 데이터가 있었습니다.</p>
+            <p class="explText">이 웹사이트는 정명고등학교 홈페이지에서 확인 기간 전엔 막혀있는 스크립트를 약간 수정해 서버에 요청을 하는것에 성공하는 것입니다.</p>
+            <p class="explText">현재 정명고등학교 자바스크립트는 약간의 난독화가 되어 있을 뿐 전혀 수정되지 않았습니다.</p>
+            <p class="explText">이에 원 평서문 스크립트를 통해 서버에 요청을 할 수 있는 것입니다. 그렇기에 이 웹사이트에선 아무런 정보도 수집하거나 저장하지 않습니다.</p>
+        
+            <h2 class="subText">#4 개발자</h2>
+            <p class="explText">전 2024년 기준 3학년입니다.</p>
 
-            <div class="page page00025">
-                <section>
-                    <h1>2024학년도<br>정명고등학교<span>반배정결과 조회</span></h1>
-                    <div class="box">
-                        <input type="text" id="knum" name="knum" placeholder="생년월일(000000)">
-                        <input type="text" id="kname" name="kname" placeholder="이름">
-                        <button type="button" id="btn_search" class="btn btn-primary">검 색 <i class="fas fa-search"
-                                aria-hidden="true"></i></button>
-                    </div>
-                </section>
-            </div>
+            <h1 class="mainText">모두 읽으셨습니까?</h1>
+            <h1 class="mainText">필요한 정보를 입력하고 반배정을 확인하세요.</h1>
 
-            <div class="page page00026">
-                <section>
-                    <h2 id="rst">○○○학생은 <span>1학년 ○반</span>에 배정되었습니다.</h2>
-                </section>
-            </div>
-
-            <script>
-                $(document).ready(function () {
-                    $("#btn_search").on("click", function () {
-                        var knum = $("#knum").val();
-                        var kname = $("#kname").val();
-
-                        if (knum === "") {
-                            alert("생년월일을 입력하세요!");
-                            $("#knum").focus();
-                            return false;
-                        }
-                        if (kname === "") {
-                            alert("이름을 입력하세요!");
-                            $("#kname").focus();
-                            return false;
-                        }
-
-                        var proc = "searchMember";
-
-                        $.ajax({
-                            url: '/layouts/jeongmyung/process/main_proc.php',
-                            type: 'POST',
-                            dataType: 'text',
-                            data: {
-                                knum: knum,
-                                kname: kname,
-                                proc: proc
-                            },
-                            async: false,
-                            success: function (data, textStatus, jqXHR) {
-                                var data_arr = data.split("^^");
-                                if (data_arr[0].trim() == "ok") {
-                                    $(".page00025").addClass("hidden");
-                                    $(".page00026").removeClass("hidden");
-                                    $("#rst").html(data_arr[1]);
-                                } else if (data_arr[0].trim() == "err") {
-                                    alert("검색되지 않습니다. 이름과 생년월일을 확인하시기 바랍니다.");
-                                    $("#knum").focus();
-                                } else {
-                                    alert("시스템에 문제가 있습니다. [ " + data + " ]\n관리자에게 문의해 주세요.");
-                                    $("#knum").val("");
-                                    $("#kname").val("");
-                                }
-                            },
-                            error: function () {
-                                return;
-                            }
-                        });
-                    });
-                });
-            </script>
+            <input class="holder" type="text" id="knum" name="knum" placeholder="생년월일(000000)">
+            <input class="holder" type="text" id="kname" name="kname" placeholder="이름">
+            <h1 id="resultText" class="hidden">결과 확인 텍스트</h1>
+            <button type="button" id="btn_search" class="btn">
+                검 색
+            </button>
         </div>
-
-        <div id="footer">
-            <div class="footerContents">
-                <!-- Your footer content goes here -->
-                <p class="info">
-                    경기도 부천시 심곡로 100 정명고등학교 (우) 14747<br>
-                </p>
-                <address>
-                    <em>Copyright ©</em> JEONGMYUNG HIGH SCHOOL, <span>All Rights Reserved.</span>
-                </address>
-            </div>
-        </div>
-    </div>
-
-    <!-- Additional scripts go here -->
-
-</body>
-
+    </body>
 </html>
